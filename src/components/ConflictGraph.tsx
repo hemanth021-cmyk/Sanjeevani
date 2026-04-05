@@ -120,7 +120,47 @@ const ConflictGraph: React.FC<ConflictGraphProps> = ({ patient, onInteractionCli
         linkDirectionalParticleWidth={4}
         linkDirectionalParticleColor={() => '#E74C3C'}
         linkDirectionalParticleSpeed={0.015}
+        linkCanvasObjectMode={() => 'after'}
+        linkCanvasObject={(link: any, ctx, globalScale) => {
+          if (!link.severity || link.severity === 'safe') return;
+          
+          const start = link.source;
+          const end = link.target;
+          if (typeof start !== 'object' || typeof end !== 'object') return; // Not yet initialized
+          
+          const textPos = Object.assign({}, start, {
+            x: start.x + (end.x - start.x) / 2,
+            y: start.y + (end.y - start.y) / 2
+          });
+          
+          const label = link.severity.toUpperCase();
+          const fontSize = 10 / globalScale;
+          ctx.font = `bold ${fontSize}px Inter, sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = link.severity === 'high' ? '#E74C3C' : '#F5A623';
+          
+          // Draw background behind text
+          const textWidth = ctx.measureText(label).width;
+          ctx.fillStyle = 'rgba(255,255,255,0.85)';
+          ctx.fillRect(textPos.x - textWidth/2 - 2, textPos.y - fontSize/2 - 2, textWidth + 4, fontSize + 4);
+          
+          // Draw text
+          ctx.fillStyle = link.severity === 'high' ? '#E74C3C' : '#F5A623';
+          ctx.fillText(label, textPos.x, textPos.y);
+        }}
       />
+      
+      {/* Interactive Graph Legend overlay */}
+      <div style={{ position: 'absolute', bottom: 15, left: 15, background: 'rgba(255,255,255,0.95)', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '0.85rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <strong style={{ display: 'block', marginBottom: '0.4rem', color: 'var(--primary-dark)' }}>Severity Legend</strong>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: '#E74C3C' }}></span> Lethal / Severe Conflict</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: '#F5A623' }}></span> Moderate Risk</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: '#1A6B42' }}></span> Safe / Base Drug</div>
+        </div>
+      </div>
+
       {graphData.links.some((l: any) => l.severity === 'high') && (
         <div style={{ position: 'absolute', top: 10, right: 10 }} className="pill high animate-pulse-glow">
           Clinical Warning

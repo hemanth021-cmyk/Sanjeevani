@@ -28,27 +28,56 @@ const InteractionViewer: React.FC<InteractionViewerProps> = ({ interaction, pati
             </div>
           ) : (
             <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
                 {interaction.severity === 'high' ? <AlertCircle size={32} color="var(--alert-red)" /> : 
                  interaction.severity === 'moderate' ? <AlertTriangle size={32} color="var(--alert)" /> : 
                  <ShieldCheck size={32} color="var(--primary)" />}
                 <div>
-                  <h2 style={{ marginBottom: '0.2rem' }}>{interaction.source.name || interaction.source}</h2>
-                  <div style={{ color: 'var(--accent-teal)' }}>interacting with</div>
-                  <h2 style={{ marginTop: '0.2rem' }}>{interaction.target.name || interaction.target}</h2>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Detected Interaction</div>
+                  <h2 style={{ margin: '0.2rem 0', fontSize: '1.2rem' }}>
+                    <span style={{ color: 'var(--primary-dark)' }}>{interaction.source.name || interaction.source}</span>
+                    <span style={{ margin: '0 8px', color: 'var(--accent-teal)' }}>↔</span>
+                    <span style={{ color: 'var(--primary-dark)' }}>{interaction.target.name || interaction.target}</span>
+                  </h2>
                 </div>
               </div>
 
-              <div className="surface-panel" style={{ borderLeft: `4px solid ${interaction.severity === 'high' ? 'var(--alert-red)' : 'var(--alert)'}` }}>
-                <strong style={{ display: 'block', marginBottom: '0.8rem', color: 'var(--primary-dark)' }}>Plain-Language Explanation:</strong>
-                <p style={{ margin: 0, lineHeight: '1.6', fontSize: '0.95rem' }}>{interaction.aiExplanation || interaction.description}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                
+                {/* Severity Tier */}
+                <div>
+                  <strong style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.3rem' }}>Severity Level</strong>
+                  <span className={`pill ${interaction.severity}`} style={{ fontSize: '0.9rem', padding: '4px 10px' }}>
+                    {interaction.severity === 'high' ? '🔴 LETHAL / SEVERE' : interaction.severity === 'moderate' ? '🟠 MODERATE' : '🟢 MILD / SAFE'}
+                  </span>
+                </div>
+
+                {/* Mechanism */}
+                <div className="surface-panel" style={{ borderLeft: `4px solid ${interaction.severity === 'high' ? 'var(--alert-red)' : 'var(--alert)'}` }}>
+                  <strong style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--primary-dark)', fontSize: '0.85rem' }}>Pharmacological Mechanism:</strong>
+                  <p style={{ margin: 0, lineHeight: '1.6', fontSize: '0.95rem', color: 'var(--text-body)' }}>{interaction.aiExplanation || interaction.description}</p>
+                </div>
+
+                {/* Recommended Action */}
+                <div>
+                  <strong style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--primary-dark)', fontSize: '0.85rem' }}>Recommended Clinical Action:</strong>
+                  <div style={{ background: interaction.severity === 'high' ? 'rgba(231,76,60,0.1)' : 'rgba(245,166,35,0.1)', padding: '0.8rem', borderRadius: '6px', border: `1px solid ${interaction.severity === 'high' ? 'var(--alert-red)' : 'var(--alert)'}` }}>
+                    <strong style={{ color: interaction.severity === 'high' ? 'var(--alert-red)' : 'var(--alert)', fontSize: '0.95rem' }}>
+                      {interaction.severity === 'high' ? '⛔ IMMEDIATE DISCONTINUATION REQUIRED.' : '⚠️ REQUIRES STRICT CLINICAL MONITORING. CONSIDER ALTERNATIVES.'}
+                    </strong>
+                    <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                      Override requires superior attending physician authorization signature.
+                    </p>
+                  </div>
+                </div>
+
               </div>
 
               {/* Explainable Graph AI component */}
               <div style={{ marginTop: 'auto', padding: '1rem', background: 'var(--bg)', borderRadius: '8px', border: '1px dashed var(--border)' }}>
                  <strong style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.85rem' }}>Conflict Tracing Path:</strong>
-                 <code style={{ color: 'var(--primary-dark)', fontSize: '0.9rem' }}>
-                   Input → {interaction.source.name || interaction.source} ↔ {interaction.target.name || interaction.target} → Reaction
+                 <code style={{ color: 'var(--primary-dark)', fontSize: '0.85rem' }}>
+                   System Input → {interaction.source.name || interaction.source} ↔ {interaction.target.name || interaction.target} → Adverse Reaction
                  </code>
               </div>
             </>

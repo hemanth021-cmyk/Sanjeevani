@@ -30,8 +30,8 @@ const PatientList: React.FC<PatientListProps> = ({ selectedPatientId, onSelectPa
     <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div className="widget-header">
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Activity size={18} color="var(--primary)" />
-          Incoming Patients
+          <Activity size={18} color="var(--alert-red)" />
+          High-Risk Patients List
         </h3>
         <span className="pill safe">LIVE</span>
       </div>
@@ -47,10 +47,15 @@ const PatientList: React.FC<PatientListProps> = ({ selectedPatientId, onSelectPa
       </div>
 
       <div className="widget-body">
-        {MOCK_PATIENTS.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase())).map((patient) => {
+        {MOCK_PATIENTS.map(p => ({ ...p, score: getScore(p) }))
+          .filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
+          .sort((a, b) => a.score - b.score) // Sort lowest score (highest risk) first
+          .map((patient) => {
           const isSelected = patient.id === selectedPatientId;
-          const score = getScore(patient);
+          const score = patient.score;
           const scoreColor = score > 80 ? 'var(--primary)' : score > 50 ? 'var(--alert)' : 'var(--alert-red)';
+          const riskTier = score > 80 ? 'Moderate' : score > 50 ? 'High' : 'Critical';
+          const tierIcon = score > 80 ? '🟡' : score > 50 ? '🟠' : '🔴';
           
           return (
             <div 
@@ -60,20 +65,38 @@ const PatientList: React.FC<PatientListProps> = ({ selectedPatientId, onSelectPa
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', alignItems: 'center' }}>
                 <strong style={{ fontSize: '1.1rem', color: 'var(--primary-dark)' }}>{patient.name}</strong>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold', color: scoreColor }}>
-                   Score: {score}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
+                  <span style={{ fontSize: '0.8rem', padding: '2px 6px', borderRadius: '4px', background: 'var(--surface)', color: scoreColor }}>
+                    {tierIcon} {riskTier} Risk
+                  </span>
                 </div>
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-body)', display: 'flex', gap: '0.4rem', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <span>Age: {patient.age}</span>
-                  <span style={{ fontSize: '0.75rem', opacity: 0.7 }}>Encrypted Payload</span>
+                  <span style={{ fontSize: '0.75rem', opacity: 0.7, color: scoreColor }}>Risk Score: {score}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <code style={{ background: 'var(--surface)', padding: '2px 6px', borderRadius: '4px', width: '100%' }}>
-                    {patient.encryptedActivePrescriptions.join(', ')}
-                  </code>
-                </div>
+                
+                {isSelected ? (
+                  <div style={{ background: 'var(--bg)', padding: '0.8rem', borderRadius: '6px', border: '1px dashed var(--alert)', marginTop: '0.5rem' }}>
+                    <strong style={{ fontSize: '0.8rem', color: 'var(--alert)', marginBottom: '0.4rem', display: 'block' }}>Decryption Trace:</strong>
+                    {patient.encryptedActivePrescriptions.map((enc, idx) => {
+                      const dec = decryptPrescription(enc, patient.age);
+                      const shift = patient.age % 26;
+                      return (
+                        <div key={idx} style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '4px', borderBottom: '1px solid rgba(0,0,0,0.05)', paddingBottom: '2px' }}>
+                          <code>{enc}</code> + Age {patient.age} → Shift {shift} → <strong style={{ color: 'var(--primary-dark)' }}>{dec}</strong> {'✅'}
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <code style={{ background: 'var(--surface)', padding: '2px 6px', borderRadius: '4px', width: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {patient.encryptedActivePrescriptions.join(', ')}
+                    </code>
+                  </div>
+                )}
               </div>
             </div>
           );
