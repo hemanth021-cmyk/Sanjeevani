@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MOCK_PATIENTS, Patient, DRUG_INTERACTIONS } from '../data/mockData';
 import { Activity } from 'lucide-react';
 import { decryptPrescription, calculateSafetyScore } from '../utils/engine';
@@ -9,6 +9,7 @@ interface PatientListProps {
 }
 
 const PatientList: React.FC<PatientListProps> = ({ selectedPatientId, onSelectPatient }) => {
+  const [searchQuery, setSearchQuery] = useState('');
   
   // Calculate score on the fly for UI
   const getScore = (patient: Patient) => {
@@ -34,8 +35,19 @@ const PatientList: React.FC<PatientListProps> = ({ selectedPatientId, onSelectPa
         </h3>
         <span className="pill safe">LIVE</span>
       </div>
+      
+      <div style={{ padding: '0 1rem 0.5rem 1rem' }}>
+        <input 
+          type="search" 
+          placeholder="Search patients..." 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.2)', color: 'white' }}
+        />
+      </div>
+
       <div className="widget-body">
-        {MOCK_PATIENTS.map((patient) => {
+        {MOCK_PATIENTS.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase())).map((patient) => {
           const isSelected = patient.id === selectedPatientId;
           const score = getScore(patient);
           const scoreColor = score > 80 ? 'var(--primary)' : score > 50 ? 'var(--alert)' : 'var(--alert-red)';

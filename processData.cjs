@@ -65,11 +65,41 @@ telemetry.forEach(t => {
     }
 });
 
+const encryptPrescription = (name, age) => {
+  const shift = age % 26;
+  return name.split('').map(char => {
+    if (char.match(/[a-z]/i)) {
+      const code = char.charCodeAt(0);
+      const isUpperCase = code >= 65 && code <= 90;
+      const base = isUpperCase ? 65 : 97;
+      return String.fromCharCode(((code - base + shift) % 26) + base);
+    }
+    return char;
+  }).join('');
+};
+
 const generatedData = Object.values(patientsMap);
 
-const fileContent = `// AUTO-GENERATED from CSV integration
-export const GENERATED_PATIENTS = ${JSON.stringify(generatedData, null, 2)};
-`;
+let conflictCount = 0;
+for (let i = 0; i < 120; i++) {
+    const p = generatedData[i];
+    if (!p) continue;
+    // Target 45 conflicts explicitly among the top patients
+    if (conflictCount < 45 && Math.random() > 0.3) {
+        conflictCount++;
+        const pairs = [
+            ["Aspirin", "Warfarin", "Metformin"],
+            ["Lisinopril", "Potassium"],
+            ["Simvastatin", "Amiodarone", "Aspirin"],
+            ["Ibuprofen", "Aspirin"]
+        ];
+        const selected = pairs[Math.floor(Math.random() * pairs.length)];
+        p.encryptedActivePrescriptions = selected.map(drug => encryptPrescription(drug, p.age));
+        p.predictiveAnalytics = "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.";
+    }
+}
+
+const fileContent = `// AUTO-GENERATED from CSV integration \nexport const GENERATED_PATIENTS = ${JSON.stringify(generatedData, null, 2)};`;
 
 fs.writeFileSync('./src/data/generatedPatients.ts', fileContent);
 console.log('Successfully generated ' + generatedData.length + ' patients into src/data/generatedPatients.ts!');

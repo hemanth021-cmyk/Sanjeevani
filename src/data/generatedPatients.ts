@@ -1,14 +1,14 @@
-// AUTO-GENERATED from CSV integration
+// AUTO-GENERATED from CSV integration 
 export const GENERATED_PATIENTS = [
   {
     "id": "G-100",
     "name": "Patient 1",
     "age": 50,
     "encryptedActivePrescriptions": [
-      "Otyarot",
-      "Kcrdmpkgl"
+      "Jgqglmnpgj",
+      "Nmryqqgsk"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 88,
       "bpSystolic": 135,
@@ -37,10 +37,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 5",
     "age": 55,
     "encryptedActivePrescriptions": [
-      "Fxunwns",
-      "Dpralfloolq"
+      "Lexsurihq",
+      "Dvslulq"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 110,
       "bpSystolic": 144,
@@ -53,10 +53,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 7",
     "age": 30,
     "encryptedActivePrescriptions": [
-      "Kcrdmpkgl",
-      "Mrwypmr"
+      "Wmqzewxexmr",
+      "Eqmshevsri",
+      "Ewtmvmr"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 63,
       "bpSystolic": 125,
@@ -69,10 +70,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 9",
     "age": 11,
     "encryptedActivePrescriptions": [
-      "Afkmdaf",
-      "Xpeqzcxty"
+      "Dtxgldelety",
+      "Lxtzolczyp",
+      "Ldatcty"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 65,
       "bpSystolic": 126,
@@ -85,10 +87,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 11",
     "age": 85,
     "encryptedActivePrescriptions": [
-      "Nfcveva",
-      "Puzbspu"
+      "Pibwyvmlu",
+      "Hzwpypu"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 63,
       "bpSystolic": 125,
@@ -132,10 +134,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 17",
     "age": 66,
     "encryptedActivePrescriptions": [
-      "Xpeqzcxty",
-      "Wbgizwb"
+      "Gwajoghohwb",
+      "Oawcrofcbs",
+      "Ogdwfwb"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 103,
       "bpSystolic": 141,
@@ -148,10 +151,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 19",
     "age": 33,
     "encryptedActivePrescriptions": [
-      "Rjyktwrns",
-      "Tlamvytpu"
+      "Spzpuvwyps",
+      "Wvahzzpbt"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 75,
       "bpSystolic": 130,
@@ -180,10 +183,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 23",
     "age": 11,
     "encryptedActivePrescriptions": [
-      "Ogdwfwb",
-      "Lxzitntwwty"
+      "Tmfaczqpy",
+      "Ldatcty"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 96,
       "bpSystolic": 138,
@@ -212,10 +215,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 27",
     "age": 15,
     "encryptedActivePrescriptions": [
-      "Gynzilgch",
-      "Pbdmxrxaaxc"
+      "Phexgxc",
+      "Lpgupgxc",
+      "Btiudgbxc"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 67,
       "bpSystolic": 126,
@@ -244,10 +248,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 31",
     "age": 43,
     "encryptedActivePrescriptions": [
-      "Tlibkbg",
-      "Dvkwfidze"
+      "Czjzefgizc",
+      "Gfkrjjzld"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 108,
       "bpSystolic": 143,
@@ -260,10 +264,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 33",
     "age": 30,
     "encryptedActivePrescriptions": [
-      "Wolenej",
+      "Wmqzewxexmr",
+      "Eqmshevsri",
       "Ewtmvmr"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 109,
       "bpSystolic": 143,
@@ -276,10 +281,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 35",
     "age": 27,
     "encryptedActivePrescriptions": [
-      "Tlamvytpu",
+      "Tjnwbtubujo",
+      "Bnjpebspof",
       "Btqjsjo"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 68,
       "bpSystolic": 127,
@@ -308,10 +314,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 39",
     "age": 29,
     "encryptedActivePrescriptions": [
-      "Hzoajmhdi",
+      "Dvslulq",
+      "Zduidulq",
       "Phwiruplq"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 75,
       "bpSystolic": 130,
@@ -324,10 +331,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 41",
     "age": 33,
     "encryptedActivePrescriptions": [
-      "Xpeqzcxty",
-      "Tlamvytpu"
+      "Zptchzahapu",
+      "Htpvkhyvul",
+      "Hzwpypu"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 66,
       "bpSystolic": 126,
@@ -340,10 +348,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 43",
     "age": 37,
     "encryptedActivePrescriptions": [
-      "Lqvxolq",
-      "Lxzitntwwty"
+      "Ldatcty",
+      "Hlcqlcty",
+      "Xpeqzcxty"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 102,
       "bpSystolic": 140,
@@ -356,10 +365,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 45",
     "age": 40,
     "encryptedActivePrescriptions": [
-      "Nfugpsnjo",
+      "Ogdwfwb",
+      "Koftofwb",
       "Ashtcfawb"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 93,
       "bpSystolic": 137,
@@ -372,10 +382,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 47",
     "age": 32,
     "encryptedActivePrescriptions": [
-      "Bnpyjdjmmjo",
-      "Gyvoxot"
+      "Gyvoxot",
+      "Cgxlgxot",
+      "Skzluxsot"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 76,
       "bpSystolic": 130,
@@ -388,10 +399,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 49",
     "age": 68,
     "encryptedActivePrescriptions": [
-      "Afkmdaf",
-      "Cujvehcyd"
+      "Iyclqijqjyd",
+      "Qcyetqhedu",
+      "Qifyhyd"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 88,
       "bpSystolic": 135,
@@ -404,10 +416,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 51",
     "age": 61,
     "encryptedActivePrescriptions": [
-      "Vnkdmdi",
-      "Vncoxavrw"
+      "Brvejbcjcrw",
+      "Jvrxmjaxwn",
+      "Jbyrarw"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 92,
       "bpSystolic": 136,
@@ -420,10 +433,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 53",
     "age": 6,
     "encryptedActivePrescriptions": [
-      "Curktkp",
-      "Gsudoiorrot"
+      "Gyvoxot",
+      "Cgxlgxot",
+      "Skzluxsot"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 70,
       "bpSystolic": 128,
@@ -452,10 +466,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 57",
     "age": 13,
     "encryptedActivePrescriptions": [
-      "Yqfradyuz",
+      "Nfcveva",
+      "Jnesneva",
       "Zrgsbezva"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 75,
       "bpSystolic": 130,
@@ -468,10 +483,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 59",
     "age": 18,
     "encryptedActivePrescriptions": [
-      "Hzwpypu",
-      "Skhajaf"
+      "Dakafghjad",
+      "Hglskkame"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 109,
       "bpSystolic": 143,
@@ -532,10 +547,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 67",
     "age": 27,
     "encryptedActivePrescriptions": [
-      "Qifyhyd",
+      "Btqjsjo",
+      "Xbsgbsjo",
       "Nfugpsnjo"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 86,
       "bpSystolic": 134,
@@ -548,10 +564,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 69",
     "age": 29,
     "encryptedActivePrescriptions": [
-      "Metformin",
-      "Dpralfloolq"
+      "Dvslulq",
+      "Zduidulq",
+      "Phwiruplq"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 101,
       "bpSystolic": 140,
@@ -564,10 +581,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 71",
     "age": 70,
     "encryptedActivePrescriptions": [
-      "Jvxgrlruurw",
-      "Segpauaddaf"
+      "Skhajaf",
+      "Osjxsjaf",
+      "Ewlxgjeaf"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 74,
       "bpSystolic": 129,
@@ -580,10 +598,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 73",
     "age": 58,
     "encryptedActivePrescriptions": [
-      "Rjgzize",
-      "Gsudoiorrot"
+      "Royotuvxor",
+      "Vuzgyyoas"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 100,
       "bpSystolic": 140,
@@ -596,10 +614,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 75",
     "age": 77,
     "encryptedActivePrescriptions": [
-      "Btqjsjo",
-      "Zlnwhbhkkhm"
+      "Hatoqnedm",
+      "Zrohqhm"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 97,
       "bpSystolic": 138,
@@ -612,10 +630,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 77",
     "age": 44,
     "encryptedActivePrescriptions": [
-      "Aspirin",
-      "Afkmdaf"
+      "Dakafghjad",
+      "Hglskkame"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 61,
       "bpSystolic": 124,
@@ -628,10 +646,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 79",
     "age": 10,
     "encryptedActivePrescriptions": [
-      "Otyarot",
+      "Kczsbsx",
+      "Gkbpkbsx",
       "Wodpybwsx"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 69,
       "bpSystolic": 127,
@@ -644,10 +663,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 81",
     "age": 33,
     "encryptedActivePrescriptions": [
-      "Oaclwqwzzwb",
-      "Tlamvytpu"
+      "Pibwyvmlu",
+      "Hzwpypu"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 70,
       "bpSystolic": 128,
@@ -660,10 +679,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 83",
     "age": 40,
     "encryptedActivePrescriptions": [
-      "Btiudgbxc",
-      "Wbgizwb"
+      "Wpidfctsb",
+      "Ogdwfwb"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 66,
       "bpSystolic": 126,
@@ -692,10 +711,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 87",
     "age": 54,
     "encryptedActivePrescriptions": [
-      "Vncoxavrw",
-      "Ogvhqtokp"
+      "Ukoxcuvcvkp",
+      "Cokqfctqpg",
+      "Curktkp"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 69,
       "bpSystolic": 127,
@@ -708,9 +728,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 89",
     "age": 5,
     "encryptedActivePrescriptions": [
-      "Frtcnhnqqns"
+      "Qnxnstuwnq",
+      "Utyfxxnzr"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 95,
       "bpSystolic": 138,
@@ -723,10 +744,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 91",
     "age": 19,
     "encryptedActivePrescriptions": [
-      "Kczsbsx",
+      "Tlibkbg",
+      "Ptkytkbg",
       "Fxmyhkfbg"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 106,
       "bpSystolic": 142,
@@ -739,10 +761,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 93",
     "age": 35,
     "encryptedActivePrescriptions": [
-      "Htvepjpsspu",
-      "Jvxgrlruurw"
+      "Rkdyaxonw",
+      "Jbyrarw"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 92,
       "bpSystolic": 136,
@@ -755,10 +777,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 95",
     "age": 15,
     "encryptedActivePrescriptions": [
-      "Skhajaf",
-      "Pbdmxrxaaxc"
+      "Xqjegdutc",
+      "Phexgxc"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 64,
       "bpSystolic": 125,
@@ -787,10 +809,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 99",
     "age": 7,
     "encryptedActivePrescriptions": [
-      "Bglnebg",
+      "Pibwyvmlu",
       "Hzwpypu"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 88,
       "bpSystolic": 135,
@@ -803,10 +825,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 101",
     "age": 58,
     "encryptedActivePrescriptions": [
-      "Ykmvgagjjgl",
-      "Otyarot"
+      "Royotuvxor",
+      "Vuzgyyoas"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 92,
       "bpSystolic": 136,
@@ -851,10 +873,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 107",
     "age": 22,
     "encryptedActivePrescriptions": [
-      "Gyvoxot",
+      "Exqlnkbaj",
       "Wolenej"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 88,
       "bpSystolic": 135,
@@ -867,10 +889,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 109",
     "age": 81,
     "encryptedActivePrescriptions": [
-      "Insulin",
-      "Dvslulq"
+      "Dvslulq",
+      "Zduidulq",
+      "Phwiruplq"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 62,
       "bpSystolic": 124,
@@ -883,10 +906,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 111",
     "age": 53,
     "encryptedActivePrescriptions": [
-      "Skzluxsot",
-      "Btqjsjo"
+      "Btqjsjo",
+      "Xbsgbsjo",
+      "Nfugpsnjo"
     ],
-    "predictiveAnalytics": "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 70,
       "bpSystolic": 128,
@@ -915,10 +939,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 115",
     "age": 48,
     "encryptedActivePrescriptions": [
-      "Yqngpgl",
-      "Wikteyehhej"
+      "Exqlnkbaj",
+      "Wolenej"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 83,
       "bpSystolic": 133,
@@ -931,10 +955,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 117",
     "age": 50,
     "encryptedActivePrescriptions": [
-      "Iaxqzqv",
+      "Qgktyqryrgl",
+      "Ykgmbypmlc",
       "Yqngpgl"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 90,
       "bpSystolic": 136,
@@ -947,10 +972,10 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 119",
     "age": 58,
     "encryptedActivePrescriptions": [
-      "Kwyhsmsvvsx",
-      "Gyvoxot"
+      "Royotuvxor",
+      "Vuzgyyoas"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 65,
       "bpSystolic": 126,
@@ -963,10 +988,11 @@ export const GENERATED_PATIENTS = [
     "name": "Patient 121",
     "age": 37,
     "encryptedActivePrescriptions": [
-      "Vafhyva",
+      "Dtxgldelety",
+      "Lxtzolczyp",
       "Ldatcty"
     ],
-    "predictiveAnalytics": "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.",
+    "predictiveAnalytics": "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.",
     "wearables": {
       "heartRate": 73,
       "bpSystolic": 129,
