@@ -119,15 +119,29 @@ function App() {
             >
               <Globe2 size={18} />
             </button>
-            <button 
-              className="btn-primary" 
-              style={{ flex: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', background: 'var(--surface)', color: 'var(--primary)' }}
-              title="Lazarus Forensic Audit details"
-              onClick={() => setShowAudit(true)}
-            >
-              <Database size={18} />
-            </button>
           </div>
+
+          <button 
+            className="btn-primary" 
+            style={{ 
+              width: '100%', 
+              marginTop: '1rem', 
+              padding: '1rem', 
+              display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center', 
+              gap: '0.8rem', 
+              background: 'var(--primary)', 
+              color: 'white', 
+              fontWeight: 600, 
+              fontSize: '1rem',
+              boxShadow: '0 4px 15px rgba(26, 107, 66, 0.4)',
+              border: '1px solid var(--accent-teal)'
+            }}
+            onClick={() => setShowAudit(true)}
+          >
+            <Database size={20} /> View Global Pharmacy Audit
+          </button>
         </div>
         
         <div style={{ flex: 2, minHeight: 0 }}>
