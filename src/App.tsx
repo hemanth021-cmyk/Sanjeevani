@@ -4,6 +4,7 @@ import PatientList from './components/PatientList';
 import ConflictGraph from './components/ConflictGraph';
 import InteractionViewer from './components/InteractionViewer';
 import ValidationPanel from './components/ValidationPanel';
+import GlobalAuditTable from './components/GlobalAuditTable';
 import { Mic, Video, Globe2, Activity, HeartPulse, Database } from 'lucide-react';
 
 function App() {
@@ -216,20 +217,12 @@ function App() {
       {showAudit && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'rgba(0,0,0,0.7)', zIndex: 100,
+          background: 'rgba(0,0,0,0.85)', zIndex: 100,
           display: 'flex', alignItems: 'center', justifyContent: 'center'
         }}>
-          <div className="glass-panel" style={{ width: '600px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid var(--alert)', background: 'var(--white-panel)' }}>
-            <div style={{ textAlign: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '1rem' }}>
-              <h2 style={{ fontFamily: 'monospace', letterSpacing: '2px', color: 'var(--primary-dark)' }}>LAZARUS_FORENSIC_OFFICIAL</h2>
-              <code style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Certificate of Recovery</code>
-            </div>
-            <p style={{ lineHeight: '1.6', fontFamily: 'monospace', fontSize: '0.95rem', color: 'var(--text-body)' }}>
-              This document certifies that the <strong>LAZARUS Forensic Engine</strong> has successfully audited and recovered the corrupted hospital database (G-100 Series logs). 
-              <br/><br/>
-              Identity disambiguation was performed via parity verification, and pharmacological records were actively decrypted using dynamic age-key derivation via the Sanjeevani UI module.
-            </p>
-            <button className="btn-primary" style={{ background: 'var(--alert)', marginTop: '1rem' }} onClick={() => setShowAudit(false)}>Acknowledge Recovery</button>
+          <div className="glass-panel" style={{ width: '90vw', maxWidth: '1200px', height: '90vh', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid var(--primary)', background: 'var(--bg)' }}>
+            <GlobalAuditTable />
+            <button className="btn-primary" style={{ alignSelf: 'flex-end', marginTop: '1rem', padding: '0.8rem 2rem' }} onClick={() => setShowAudit(false)}>Close Audit Log</button>
           </div>
         </div>
       )}
