@@ -4,13 +4,14 @@ import PatientList from './components/PatientList';
 import ConflictGraph from './components/ConflictGraph';
 import InteractionViewer from './components/InteractionViewer';
 import ValidationPanel from './components/ValidationPanel';
-import { Mic, Video, Globe2, Activity, HeartPulse } from 'lucide-react';
+import { Mic, Video, Globe2, Activity, HeartPulse, Database } from 'lucide-react';
 
 function App() {
   const [selectedPatientId, setSelectedPatientId] = useState<string | null>(null);
   const [selectedInteraction, setSelectedInteraction] = useState<any | null>(null);
   const [arMode, setArMode] = useState(false);
   const [showMission, setShowMission] = useState(false);
+  const [showAudit, setShowAudit] = useState(false);
   const [isListening, setIsListening] = useState(false);
   
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -117,6 +118,14 @@ function App() {
             >
               <Globe2 size={18} />
             </button>
+            <button 
+              className="btn-primary" 
+              style={{ flex: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', background: 'var(--surface)', color: 'var(--primary)' }}
+              title="Lazarus Forensic Audit details"
+              onClick={() => setShowAudit(true)}
+            >
+              <Database size={18} />
+            </button>
           </div>
         </div>
         
@@ -199,6 +208,28 @@ function App() {
               Our <strong>Pharmacy Interaction Engine</strong> utilizes Caesar-decrypted telemetry and predictive AI to instantly serve as a second pair of expert eyes—automatically analyzing complex chains of medications to prevent lethal complications before a prescription ever leaves the pharmacy window.
             </p>
             <button className="btn-primary" onClick={() => setShowMission(false)}>Return to Dashboard</button>
+          </div>
+        </div>
+      )}
+
+      {/* Lazarus Audit Modal */}
+      {showAudit && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,0,0,0.7)', zIndex: 100,
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <div className="glass-panel" style={{ width: '600px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid var(--alert)', background: 'var(--white-panel)' }}>
+            <div style={{ textAlign: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: 'monospace', letterSpacing: '2px', color: 'var(--primary-dark)' }}>LAZARUS_FORENSIC_OFFICIAL</h2>
+              <code style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Certificate of Recovery</code>
+            </div>
+            <p style={{ lineHeight: '1.6', fontFamily: 'monospace', fontSize: '0.95rem', color: 'var(--text-body)' }}>
+              This document certifies that the <strong>LAZARUS Forensic Engine</strong> has successfully audited and recovered the corrupted hospital database (G-100 Series logs). 
+              <br/><br/>
+              Identity disambiguation was performed via parity verification, and pharmacological records were actively decrypted using dynamic age-key derivation via the Sanjeevani UI module.
+            </p>
+            <button className="btn-primary" style={{ background: 'var(--alert)', marginTop: '1rem' }} onClick={() => setShowAudit(false)}>Acknowledge Recovery</button>
           </div>
         </div>
       )}
