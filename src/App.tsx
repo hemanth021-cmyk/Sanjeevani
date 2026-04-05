@@ -165,7 +165,7 @@ function App() {
       <div className="main-content" style={{ zIndex: 10 }}>
         
         {/* Row 1: Conflict Graph — fixed height */}
-        <div className="glass-panel" style={{ height: '420px', display: 'flex', flexDirection: 'column', background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
+        <div className="glass-panel" style={{ height: '340px', display: 'flex', flexDirection: 'column', background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
           <div className="widget-header">
             <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem' }}>
               Medication Conflict Graph
