@@ -78,11 +78,18 @@ const encryptPrescription = (name, age) => {
   }).join('');
 };
 
-// Distribute risks randomly across the ENTIRE dataset of 1000 patients
+// Distribute strictly 50 high-risk conflicts and fix missing ghost records
+let riskCap = 0;
 for (let i = 0; i < generatedData.length; i++) {
     const p = generatedData[i];
-    // 35% of all patients get a conflict 
-    if (Math.random() < 0.35) {
+    
+    // Fix the "Missing" patients who had zero prescriptions in the dataset
+    if (!p.encryptedActivePrescriptions || p.encryptedActivePrescriptions.length === 0) {
+        p.encryptedActivePrescriptions = [encryptPrescription("Cephalexin", p.age)];
+        p.predictiveAnalytics = "Routine maintenance dosage active. Patient telemetry indicates no baseline abnormalities. Continue standard risk-free care protocol.";
+    } 
+    // Inject strictly ~50 random high-risk conflicts across the dataset 
+    else if (Math.random() < 0.08 && riskCap < 50) {
         const pairs = [
             ["Aspirin", "Warfarin", "Metformin"],
             ["Lisinopril", "Potassium"],
@@ -92,6 +99,7 @@ for (let i = 0; i < generatedData.length; i++) {
         const selected = pairs[Math.floor(Math.random() * pairs.length)];
         p.encryptedActivePrescriptions = selected.map(drug => encryptPrescription(drug, p.age));
         p.predictiveAnalytics = "Critical conflict path identified in most recent prescription payload. Immediate evaluation recommended to prevent adverse systemic reaction.";
+        riskCap++;
     }
 }
 
