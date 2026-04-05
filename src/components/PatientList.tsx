@@ -27,7 +27,7 @@ const PatientList: React.FC<PatientListProps> = ({ selectedPatientId, onSelectPa
   };
 
   return (
-    <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column' }}>
       <div className="widget-header">
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Activity size={18} color="var(--alert-red)" />
@@ -42,7 +42,7 @@ const PatientList: React.FC<PatientListProps> = ({ selectedPatientId, onSelectPa
           placeholder="Search patients..." 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.2)', color: 'white' }}
+          style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--white-panel)', color: 'var(--text-body)', fontSize: '0.9rem' }}
         />
       </div>
 
