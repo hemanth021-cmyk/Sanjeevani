@@ -73,13 +73,16 @@ body {
   height: 100%;
   padding: 1rem;
   gap: 1rem;
+  overflow: hidden;
 }
 
 .sidebar {
-  width: 320px;
+  width: 220px;
+  min-width: 220px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  overflow-y: auto;
 }
 
 .main-content {
@@ -87,6 +90,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
+  overflow: hidden;
 }
 
 /* Typography styles */

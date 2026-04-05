@@ -90,127 +90,104 @@ function App() {
         />
       )}
 
-      {/* Sidebar: Patients & Wearables */}
-      <div className="sidebar" style={{ zIndex: 10 }}>
-        <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="logo-text">Sanjeevani</div>
-          <div className="subtitle" style={{ marginTop: '0.4rem', letterSpacing: '1px' }}>Pharma AI Engine</div>
+      {/* LEFT: Narrow controls sidebar */}
+      <div className="sidebar" style={{ zIndex: 10, width: '200px', minWidth: '200px' }}>
+        <div className="glass-panel" style={{ padding: '1.2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.8rem' }}>
+          <div className="logo-text" style={{ fontSize: '20px' }}>Sanjeevani</div>
+          <div className="subtitle" style={{ marginTop: 0, letterSpacing: '1px', fontSize: '0.7rem' }}>Pharma AI Engine</div>
           
-          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem', width: '100%' }}>
-            <button 
-              className="btn-primary" 
-              style={{ flex: 1, margin: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', background: isListening ? 'var(--alert-red)' : 'var(--primary)', color: 'white' }}
-              onClick={handleVoiceCommand}
-            >
-              <Mic size={18} /> {isListening ? 'Listening...' : 'Voice AI'}
-            </button>
-            <button 
-              className="btn-primary" 
-              style={{ flex: 1, margin: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', background: arMode ? 'var(--alert)' : 'var(--surface)', color: arMode ? 'white' : 'var(--primary)' }}
-              onClick={() => setArMode(!arMode)}
-            >
-              <Video size={18} /> AR Mode
-            </button>
-            <button 
-              className="btn-primary" 
-              style={{ flex: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', background: 'var(--surface)', color: 'var(--primary)' }}
-              title="Social Impact Mission"
-              onClick={() => setShowMission(true)}
-            >
-              <Globe2 size={18} />
-            </button>
-          </div>
-
+          <button 
+            className="btn-primary" 
+            style={{ margin: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.4rem', background: isListening ? 'var(--alert-red)' : 'var(--primary)', color: 'white', width: '100%', fontSize: '0.85rem' }}
+            onClick={handleVoiceCommand}
+          >
+            <Mic size={15} /> {isListening ? 'Listening...' : 'Voice AI'}
+          </button>
+          <button 
+            className="btn-primary" 
+            style={{ margin: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.4rem', background: arMode ? 'var(--alert)' : 'var(--surface)', color: arMode ? 'white' : 'var(--primary)', width: '100%', fontSize: '0.85rem' }}
+            onClick={() => setArMode(!arMode)}
+          >
+            <Video size={15} /> AR Mode
+          </button>
+          <button 
+            className="btn-primary" 
+            style={{ margin: 0, padding: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.4rem', background: 'var(--surface)', color: 'var(--primary)', width: '100%', fontSize: '0.85rem' }}
+            onClick={() => setShowMission(true)}
+          >
+            <Globe2 size={15} /> Mission
+          </button>
           <button 
             className="btn-primary" 
             style={{ 
-              width: '100%', 
-              marginTop: '1rem', 
-              padding: '1rem', 
-              display: 'flex', 
-              justifyContent: 'center', 
-              alignItems: 'center', 
-              gap: '0.8rem', 
-              background: 'var(--primary)', 
-              color: 'white', 
-              fontWeight: 600, 
-              fontSize: '1rem',
-              boxShadow: '0 4px 15px rgba(26, 107, 66, 0.4)',
-              border: '1px solid var(--accent-teal)'
+              margin: 0, width: '100%', padding: '0.8rem 0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem',
+              background: 'var(--primary)', color: 'white', fontWeight: 600, fontSize: '0.8rem',
+              boxShadow: '0 4px 15px rgba(26, 107, 66, 0.4)', border: '1px solid var(--accent-teal)'
             }}
             onClick={() => setShowAudit(true)}
           >
-            <Database size={20} /> View Global Pharmacy Audit
+            <Database size={16} /> Pharmacy Audit
           </button>
-        </div>
-        
-        <div style={{ flex: 2, minHeight: 0 }}>
-          <PatientList 
-            selectedPatientId={selectedPatientId} 
-            onSelectPatient={handlePatientSelect} 
-          />
         </div>
 
         {/* Wearables Panel for Selected Patient */}
         {selectedPatient && (
-          <div className="glass-panel" style={{ flex: 1, minHeight: 0, padding: '1rem', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700', marginBottom: '1rem', color: 'var(--primary-dark)' }}>
-              <HeartPulse size={18} color="var(--alert-red)" /> Live Wearable Vitals
+          <div className="glass-panel" style={{ padding: '1rem', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700', marginBottom: '0.8rem', color: 'var(--primary-dark)', fontSize: '0.85rem' }}>
+              <HeartPulse size={16} color="var(--alert-red)" /> Live Vitals
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-              <div className="surface-panel" style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{selectedPatient.wearables?.heartRate || '--'} <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>BPM</span></div>
-                <div className="subtitle" style={{ fontSize: '0.6rem' }}>Heart Rate</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
+              <div className="surface-panel" style={{ textAlign: 'center', padding: '0.6rem' }}>
+                <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{selectedPatient.wearables?.heartRate || '--'} <span style={{ fontSize: '0.7rem', opacity: 0.7 }}>BPM</span></div>
+                <div className="subtitle" style={{ fontSize: '0.55rem' }}>Heart Rate</div>
               </div>
-              <div className="surface-panel" style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{selectedPatient.wearables?.bpSystolic}/{selectedPatient.wearables?.bpDiastolic}</div>
-                <div className="subtitle" style={{ fontSize: '0.6rem' }}>Blood Pressure</div>
+              <div className="surface-panel" style={{ textAlign: 'center', padding: '0.6rem' }}>
+                <div style={{ fontSize: '1rem', fontWeight: 'bold' }}>{selectedPatient.wearables?.bpSystolic}/{selectedPatient.wearables?.bpDiastolic}</div>
+                <div className="subtitle" style={{ fontSize: '0.55rem' }}>Blood Pressure</div>
               </div>
             </div>
-            <div style={{ marginTop: '0.5rem', textAlign: 'center', fontWeight: 'bold', fontSize: '0.9rem', color: selectedPatient.wearables.status === 'Critical' ? 'var(--alert-red)' : selectedPatient.wearables.status === 'Elevated' ? 'var(--alert)' : 'var(--primary)' }}>
-              Telemetry: {selectedPatient.wearables.status}
+            <div style={{ marginTop: '0.5rem', textAlign: 'center', fontWeight: 'bold', fontSize: '0.8rem', color: selectedPatient.wearables.status === 'Critical' ? 'var(--alert-red)' : selectedPatient.wearables.status === 'Elevated' ? 'var(--alert)' : 'var(--primary)' }}>
+              {selectedPatient.wearables.status}
             </div>
           </div>
         )}
       </div>
 
-      {/* Main Content Area */}
+      {/* CENTER: Wide Patient List - most visible */}
+      <div style={{ width: '360px', minWidth: '320px', display: 'flex', flexDirection: 'column', zIndex: 10 }}>
+        <PatientList 
+          selectedPatientId={selectedPatientId} 
+          onSelectPatient={handlePatientSelect} 
+        />
+      </div>
+
+      {/* RIGHT: Main Analytics Area */}
       <div className="main-content" style={{ zIndex: 10 }}>
         
-        {/* 2-column layout: Left = Graph + Validation stacked, Right = AI Risk Analysis */}
-        <div style={{ display: 'flex', gap: '1rem', flex: 1, minHeight: 0, overflow: 'hidden' }}>
-
-          {/* LEFT COLUMN: Conflict Graph on top, Validation Panel below */}
-          <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '1rem', minHeight: 0 }}>
-
-            {/* Medication Conflict Graph */}
-            <div className="glass-panel" style={{ flex: 2, display: 'flex', flexDirection: 'column', minHeight: 0, background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
-              <div className="widget-header">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  Medication Conflict Graph
-                </h3>
-                {selectedPatient && <span className="pill safe">{selectedPatient.name} (Age {selectedPatient.age})</span>}
-              </div>
-              <div className="widget-body" style={{ padding: 0, flex: 1, minHeight: 0 }}>
-                <ConflictGraph 
-                  patient={selectedPatient} 
-                  onInteractionClick={(interaction) => setSelectedInteraction(interaction)} 
-                />
-              </div>
-            </div>
-
-            {/* Prescription Validation Panel - below graph */}
-            <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
-              <ValidationPanel patient={selectedPatient} />
-            </div>
-
+        {/* Row 1: Conflict Graph (tall) */}
+        <div className="glass-panel" style={{ flex: 2, display: 'flex', flexDirection: 'column', minHeight: 0, background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
+          <div className="widget-header">
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem' }}>
+              Medication Conflict Graph
+            </h3>
+            {selectedPatient && <span className="pill safe" style={{ fontSize: '0.7rem' }}>{selectedPatient.name} (Age {selectedPatient.age})</span>}
           </div>
+          <div className="widget-body" style={{ padding: 0, flex: 1, minHeight: 0 }}>
+            <ConflictGraph 
+              patient={selectedPatient} 
+              onInteractionClick={(interaction) => setSelectedInteraction(interaction)} 
+            />
+          </div>
+        </div>
 
-          {/* RIGHT COLUMN: AI Risk Analysis (full height) */}
+        {/* Row 2: AI Risk Analysis + Validation side by side */}
+        <div style={{ flex: 1, display: 'flex', gap: '1rem', minHeight: 0 }}>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
             <InteractionViewer interaction={selectedInteraction} patient={selectedPatient} />
           </div>
-
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+            <ValidationPanel patient={selectedPatient} />
+          </div>
         </div>
 
       </div>

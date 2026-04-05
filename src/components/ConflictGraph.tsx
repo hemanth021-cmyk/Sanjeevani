@@ -112,13 +112,13 @@ const ConflictGraph: React.FC<ConflictGraphProps> = ({ patient, onInteractionCli
         nodeLabel={() => ""} // Custom drawing used instead
         nodeCanvasObject={drawNode}
         linkColor={getLinkColor}
-        linkWidth={(link: any) => (link.severity === 'high' ? 4 : 2)}
+        linkWidth={(link: any) => (link.severity === 'high' ? 5 : link.severity === 'moderate' ? 3 : 1.5)}
         onLinkClick={(link) => onInteractionClick(link)}
         onNodeClick={() => {}}
         backgroundColor="rgba(0,0,0,0)"
-        linkDirectionalParticles={(link: any) => (link.severity === 'high' ? 3 : 0)}
-        linkDirectionalParticleWidth={4}
-        linkDirectionalParticleColor={() => '#E74C3C'}
+        linkDirectionalParticles={(link: any) => (link.severity === 'high' ? 4 : link.severity === 'moderate' ? 2 : 0)}
+        linkDirectionalParticleWidth={(link: any) => link.severity === 'high' ? 4 : 3}
+        linkDirectionalParticleColor={(link: any) => link.severity === 'high' ? '#E74C3C' : '#F5A623'}
         linkDirectionalParticleSpeed={0.015}
         linkCanvasObjectMode={() => 'after'}
         linkCanvasObject={(link: any, ctx, globalScale) => {
