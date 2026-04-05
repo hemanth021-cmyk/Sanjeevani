@@ -13,29 +13,35 @@ const ValidationPanel: React.FC<ValidationPanelProps> = ({ patient }) => {
 
   const handleValidate = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!patient || !inputRx) return;
+    if (!patient || !inputRx) {
+      setResult({ status: 'error', message: 'No patient selected. Please select a patient from the list first.' });
+      return;
+    }
 
-    // We assume the pharmacist might enter encrypted data or plain data. 
-    // Usually they'd enter encrypted data, so let's attempt to decrypt it using the patient's age.
-    // To be flexible, if the decrypted string matches a known drug, we use it. If the raw input matches a known drug, we use it.
-    
-    let activeDrugs = patient.encryptedActivePrescriptions.map(enc => decryptPrescription(enc, patient.age));
-    
-    let plainInput = inputRx;
-    let decryptedInput = decryptPrescription(inputRx, patient.age);
+    const shift = patient.age % 26;
+    let plainInput = inputRx.trim();
+    let decryptedInput = decryptPrescription(plainInput, patient.age);
 
-    const matchPlain = DRUGS.find(d => d.name.toLowerCase() === plainInput.toLowerCase());
     const matchDecrypted = DRUGS.find(d => d.name.toLowerCase() === decryptedInput.toLowerCase());
+    const matchPlain = DRUGS.find(d => d.name.toLowerCase() === plainInput.toLowerCase());
 
     const verifiedDrug = matchDecrypted ? matchDecrypted.name : (matchPlain ? matchPlain.name : null);
+    const wasEncrypted = !!matchDecrypted;
 
     if (!verifiedDrug) {
-      setResult({ status: 'error', message: 'Unknown drug code. Check cipher input.' });
+      setResult({ 
+        status: 'error', 
+        message: `"${plainInput}" could not be decoded to a known drug using Shift = ${shift} (Age ${patient.age}). Try a valid cipher input.`,
+        input: plainInput,
+        shift,
+        age: patient.age
+      });
       return;
     }
 
     // Check against active drugs
-    const conflicts = [];
+    const activeDrugs = patient.encryptedActivePrescriptions.map(enc => decryptPrescription(enc, patient.age));
+    const conflicts: any[] = [];
     for (const active of activeDrugs) {
       const interaction = DRUG_INTERACTIONS.find(
         i => (i.source.toLowerCase() === active.toLowerCase() && i.target.toLowerCase() === verifiedDrug.toLowerCase()) ||
@@ -50,15 +56,24 @@ const ValidationPanel: React.FC<ValidationPanelProps> = ({ patient }) => {
       const isHigh = conflicts.some(c => c.severity === 'high');
       setResult({
         status: isHigh ? 'high' : 'moderate',
-        message: `Dangerous interaction detected with ${conflicts.map(c => c.with).join(', ')}.`,
+        message: `Conflict detected with active prescription(s).`,
         drug: verifiedDrug,
+        input: plainInput,
+        shift,
+        age: patient.age,
+        wasEncrypted,
         conflicts
       });
     } else {
       setResult({
         status: 'safe',
-        message: `${verifiedDrug} is safe to prescribe for this patient.`,
-        drug: verifiedDrug
+        message: `No interactions found. Safe to prescribe.`,
+        drug: verifiedDrug,
+        input: plainInput,
+        shift,
+        age: patient.age,
+        wasEncrypted,
+        conflicts: []
       });
     }
   };
@@ -90,32 +105,50 @@ const ValidationPanel: React.FC<ValidationPanelProps> = ({ patient }) => {
             />
           </div>
           <button type="submit" className="btn-primary" style={{ flex: '0 0 auto', width: 'auto', alignSelf: 'flex-end', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <Search size={18} /> Validatate
+            <Search size={18} /> Validate
           </button>
         </form>
 
         {result && (
           <div style={{ 
-            padding: '1.5rem', 
-            borderRadius: '8px', 
-            background: 'var(--surface)',
-            border: `1px solid ${result.status === 'high' ? 'var(--alert-red)' : result.status === 'safe' ? 'var(--primary)' : result.status === 'moderate' ? 'var(--alert)' : 'var(--border)'}`
+            borderRadius: '10px', 
+            border: `2px solid ${result.status === 'high' ? 'var(--alert-red)' : result.status === 'safe' ? 'var(--primary)' : result.status === 'moderate' ? 'var(--alert)' : 'var(--border)'}`,
+            overflow: 'hidden'
           }} className={result.status === 'high' ? 'danger-glow' : ''}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-              <strong style={{ fontSize: '1.2rem', color: result.status === 'high' ? 'var(--alert-red)' : 'var(--primary-dark)' }}>
-                {result.status.toUpperCase()}
-              </strong>
-              {result.drug && <span className="pill" style={{ background: 'var(--white-panel)' }}>Decrypted: {result.drug}</span>}
-            </div>
-            <p style={{ marginBottom: '1rem', color: 'var(--text-body)' }}>{result.message}</p>
-            
-            {result.conflicts && (
-              <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-body)' }}>
-                {result.conflicts.map((c: any, idx: number) => (
-                  <li key={idx}><strong>{c.with}:</strong> {c.desc}</li>
-                ))}
-              </ul>
+
+            {/* Decryption Trace Block */}
+            {result.input && (
+              <div style={{ background: 'var(--bg)', padding: '1rem 1.2rem', borderBottom: '1px solid var(--border)' }}>
+                <strong style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>✅ Decryption Result</strong>
+                <div style={{ fontFamily: 'monospace', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+                  <div><span style={{ color: 'var(--text-secondary)', minWidth: '80px', display: 'inline-block' }}>Input:</span> <code style={{ background: 'var(--surface)', padding: '2px 6px', borderRadius: '4px' }}>{result.input}</code></div>
+                  <div><span style={{ color: 'var(--text-secondary)', minWidth: '80px', display: 'inline-block' }}>Age Used:</span> <strong>{result.age}</strong> → Shift = <strong style={{ color: 'var(--primary)' }}>{result.shift}</strong></div>
+                  <div><span style={{ color: 'var(--text-secondary)', minWidth: '80px', display: 'inline-block' }}>Decoded:</span> <strong style={{ color: 'var(--primary-dark)', fontSize: '1rem' }}>{result.drug}</strong></div>
+                </div>
+              </div>
             )}
+
+            {/* Status + Action Block */}
+            <div style={{ padding: '1rem 1.2rem', background: 'var(--white-panel)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.8rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <strong style={{ fontSize: '1rem', color: result.status === 'high' ? 'var(--alert-red)' : result.status === 'safe' ? 'var(--primary)' : result.status === 'moderate' ? 'var(--alert)' : 'var(--text-body)' }}>
+                  {result.status === 'high' ? '⚠️ CONFLICT DETECTED' : result.status === 'moderate' ? '⚠️ MODERATE RISK' : result.status === 'safe' ? '✅ SAFE TO PRESCRIBE' : '❌ UNKNOWN DRUG CODE'}
+                </strong>
+              </div>
+              <p style={{ margin: '0 0 0.8rem 0', color: 'var(--text-body)', fontSize: '0.9rem' }}>{result.message}</p>
+              
+              {result.conflicts && result.conflicts.length > 0 && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {result.conflicts.map((c: any, idx: number) => (
+                    <div key={idx} style={{ background: c.severity === 'high' ? 'rgba(231,76,60,0.08)' : 'rgba(245,166,35,0.08)', border: `1px solid ${c.severity === 'high' ? 'var(--alert-red)' : 'var(--alert)'}`, borderRadius: '6px', padding: '0.7rem 1rem' }}>
+                      <div style={{ fontWeight: 600, marginBottom: '0.2rem' }}>{result.drug} + {c.with} → <span style={{ color: c.severity === 'high' ? 'var(--alert-red)' : 'var(--alert)', textTransform: 'uppercase' }}>{c.severity}</span></div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--text-body)' }}>{c.desc}</div>
+                      <div style={{ fontSize: '0.8rem', marginTop: '0.3rem', fontWeight: 600, color: c.severity === 'high' ? 'var(--alert-red)' : 'var(--alert)' }}>Action: {c.severity === 'high' ? 'Immediate review required' : 'Monitor closely'}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

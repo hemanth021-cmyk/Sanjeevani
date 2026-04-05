@@ -29,6 +29,8 @@ prescriptions.forEach(p => {
     }
 });
 
+const KNOWN_DRUG_NAMES = ['Aspirin','Warfarin','Ibuprofen','Lisinopril','Potassium','Simvastatin','Amiodarone','Metformin','Amoxicillin','Cephalexin','Insulin'];
+
 const generatedData = demographics.map(d => {
     const ghost = d.ghost_id;
     let wearables = { heartRate: 75, bpSystolic: 120, bpDiastolic: 80, status: 'Normal' };
@@ -54,12 +56,21 @@ const generatedData = demographics.map(d => {
         }
     }
 
+    // Fix plaintext drug names sitting in the scrambled_med column – encrypt them properly
+    const fixedRx = (prescriptionsMap[ghost] || []).map(med => {
+        if (KNOWN_DRUG_NAMES.includes(med)) {
+            // This is plaintext – encrypt it now
+            return encryptPrescription(med, parseInt(d.age) || 50);
+        }
+        return med;
+    });
+
     return {
         id: `P-${d.internal_id}`,
         ghost_id: ghost,
         name: d.name ? d.name.replace('_', ' ') : `Unknown-${d.internal_id}`,
         age: parseInt(d.age) || 50,
-        encryptedActivePrescriptions: prescriptionsMap[ghost] ? [...prescriptionsMap[ghost]] : [],
+        encryptedActivePrescriptions: fixedRx,
         predictiveAnalytics,
         wearables
     };
