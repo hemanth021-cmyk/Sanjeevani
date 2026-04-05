@@ -177,33 +177,40 @@ function App() {
       {/* Main Content Area */}
       <div className="main-content" style={{ zIndex: 10 }}>
         
-        {/* Top: The Network Graph & Interaction Viewer */}
-        <div style={{ display: 'flex', gap: '1rem', flex: 2, minHeight: 0 }}>
-          
-          <div className="glass-panel" style={{ flex: 2, display: 'flex', flexDirection: 'column', background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
-            <div className="widget-header">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                Medication Conflict Graph
-              </h3>
-              {selectedPatient && <span className="pill safe">{selectedPatient.name} (Age {selectedPatient.age})</span>}
+        {/* 2-column layout: Left = Graph + Validation stacked, Right = AI Risk Analysis */}
+        <div style={{ display: 'flex', gap: '1rem', flex: 1, minHeight: 0, overflow: 'hidden' }}>
+
+          {/* LEFT COLUMN: Conflict Graph on top, Validation Panel below */}
+          <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '1rem', minHeight: 0 }}>
+
+            {/* Medication Conflict Graph */}
+            <div className="glass-panel" style={{ flex: 2, display: 'flex', flexDirection: 'column', minHeight: 0, background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
+              <div className="widget-header">
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Medication Conflict Graph
+                </h3>
+                {selectedPatient && <span className="pill safe">{selectedPatient.name} (Age {selectedPatient.age})</span>}
+              </div>
+              <div className="widget-body" style={{ padding: 0, flex: 1, minHeight: 0 }}>
+                <ConflictGraph 
+                  patient={selectedPatient} 
+                  onInteractionClick={(interaction) => setSelectedInteraction(interaction)} 
+                />
+              </div>
             </div>
-            <div className="widget-body" style={{ padding: 0 }}>
-              <ConflictGraph 
-                patient={selectedPatient} 
-                onInteractionClick={(interaction) => setSelectedInteraction(interaction)} 
-              />
+
+            {/* Prescription Validation Panel - below graph */}
+            <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
+              <ValidationPanel patient={selectedPatient} />
             </div>
+
           </div>
 
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          {/* RIGHT COLUMN: AI Risk Analysis (full height) */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
             <InteractionViewer interaction={selectedInteraction} patient={selectedPatient} />
           </div>
 
-        </div>
-
-        {/* Bottom: Validation Panel */}
-        <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
-          <ValidationPanel patient={selectedPatient} />
         </div>
 
       </div>
