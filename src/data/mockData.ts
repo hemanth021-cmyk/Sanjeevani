@@ -68,6 +68,7 @@ export interface WearableData {
 
 export interface Patient {
   id: string;
+  ghost_id: string;
   name: string;
   age: number;
   encryptedActivePrescriptions: string[];

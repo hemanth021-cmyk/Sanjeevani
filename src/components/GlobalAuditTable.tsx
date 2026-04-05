@@ -10,13 +10,8 @@ const GlobalAuditTable: React.FC = () => {
       patient.encryptedActivePrescriptions.forEach(enc => {
         const dec = decryptPrescription(enc, patient.age);
         const shift = patient.age % 26;
-        let pId = patient.id;
-        if (pId.startsWith('P-')) {
-            const num = parseInt(pId.replace('P-', ''), 10);
-            pId = `G-${100 + num}`; // Mock matching G-100 syntax from screenshot based on internal id
-        }
         rows.push({
-          patientId: pId,
+          patientId: patient.ghost_id || patient.id,
           encrypted: enc,
           shift: `Shift = ${shift}`,
           decrypted: dec,

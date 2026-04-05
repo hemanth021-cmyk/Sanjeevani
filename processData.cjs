@@ -56,6 +56,7 @@ const generatedData = demographics.map(d => {
 
     return {
         id: `P-${d.internal_id}`,
+        ghost_id: ghost,
         name: d.name ? d.name.replace('_', ' ') : `Unknown-${d.internal_id}`,
         age: parseInt(d.age) || 50,
         encryptedActivePrescriptions: prescriptionsMap[ghost] ? [...prescriptionsMap[ghost]] : [],
