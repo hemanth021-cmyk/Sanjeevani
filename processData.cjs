@@ -21,48 +21,47 @@ const demographics = parseCSV(fs.readFileSync('patient_demographics (2).csv', 'u
 const prescriptions = parseCSV(fs.readFileSync('prescription_audit (2).csv', 'utf-8'));
 const telemetry = parseCSV(fs.readFileSync('telemetry_logs (2).csv', 'utf-8'));
 
-let patientsMap = {};
-
-demographics.forEach(d => {
-    patientsMap[d.ghost_id] = {
-        id: d.ghost_id,
-        name: d.name.replace('_', ' '),
-        age: parseInt(d.age),
-        encryptedActivePrescriptions: [],
-        predictiveAnalytics: "Telemetry and recent prescriptive audits remain mostly stable, though continuous evaluation is recommended.",
-        wearables: { heartRate: 75, bpSystolic: 120, bpDiastolic: 80, status: 'Normal' }
-    };
-});
-
+const prescriptionsMap = {};
 prescriptions.forEach(p => {
-    if(patientsMap[p.ghost_id] && p.scrambled_med) {
-        // avoid duplicates
-        if (!patientsMap[p.ghost_id].encryptedActivePrescriptions.includes(p.scrambled_med)) {
-            patientsMap[p.ghost_id].encryptedActivePrescriptions.push(p.scrambled_med);
-        }
+    if(!prescriptionsMap[p.ghost_id]) prescriptionsMap[p.ghost_id] = [];
+    if(p.scrambled_med && !prescriptionsMap[p.ghost_id].includes(p.scrambled_med)) {
+        prescriptionsMap[p.ghost_id].push(p.scrambled_med);
     }
 });
 
-telemetry.forEach(t => {
-    if(patientsMap[t.ghost_id] && t.heart_rate_hex) {
+const generatedData = demographics.map(d => {
+    const ghost = d.ghost_id;
+    let wearables = { heartRate: 75, bpSystolic: 120, bpDiastolic: 80, status: 'Normal' };
+    let predictiveAnalytics = "Telemetry and recent prescriptive audits remain mostly stable, though continuous evaluation is recommended.";
+
+    // Find first telemetry record for this ghost_id
+    const t = telemetry.find(tl => tl.ghost_id === ghost);
+    if(t && t.heart_rate_hex) {
         const dec = parseInt(t.heart_rate_hex, 16);
         if(!isNaN(dec)) {
-            patientsMap[t.ghost_id].wearables.heartRate = dec;
+            wearables.heartRate = dec;
             if(dec > 100 || dec < 50) {
-                patientsMap[t.ghost_id].wearables.status = 'Critical';
-                patientsMap[t.ghost_id].predictiveAnalytics = "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.";
+                wearables.status = 'Critical';
+                predictiveAnalytics = "Critical telemetry detected. Immediate pharmacological review required to rule out adverse reaction cascade.";
             } else if (dec > 85) {
-                patientsMap[t.ghost_id].wearables.status = 'Elevated';
-                patientsMap[t.ghost_id].predictiveAnalytics = "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.";
+                wearables.status = 'Elevated';
+                predictiveAnalytics = "Elevated resting heart rate indicates potential systemic strain. Continuous biochemical monitoring advised.";
             } else {
-                patientsMap[t.ghost_id].wearables.status = 'Normal';
+                wearables.status = 'Normal';
             }
-            
-            // Simulate linked biological BP
-            patientsMap[t.ghost_id].wearables.bpSystolic = Math.floor(100 + (dec * 0.4));
-            patientsMap[t.ghost_id].wearables.bpDiastolic = Math.floor(60 + (dec * 0.25));
+            wearables.bpSystolic = Math.floor(100 + (dec * 0.4));
+            wearables.bpDiastolic = Math.floor(60 + (dec * 0.25));
         }
     }
+
+    return {
+        id: `P-${d.internal_id}`,
+        name: d.name ? d.name.replace('_', ' ') : `Unknown-${d.internal_id}`,
+        age: parseInt(d.age) || 50,
+        encryptedActivePrescriptions: prescriptionsMap[ghost] ? [...prescriptionsMap[ghost]] : [],
+        predictiveAnalytics,
+        wearables
+    };
 });
 
 const encryptPrescription = (name, age) => {
@@ -78,15 +77,11 @@ const encryptPrescription = (name, age) => {
   }).join('');
 };
 
-const generatedData = Object.values(patientsMap);
-
-let conflictCount = 0;
-for (let i = 0; i < 120; i++) {
+// Distribute risks randomly across the ENTIRE dataset of 1000 patients
+for (let i = 0; i < generatedData.length; i++) {
     const p = generatedData[i];
-    if (!p) continue;
-    // Target 45 conflicts explicitly among the top patients
-    if (conflictCount < 45 && Math.random() > 0.3) {
-        conflictCount++;
+    // 35% of all patients get a conflict 
+    if (Math.random() < 0.35) {
         const pairs = [
             ["Aspirin", "Warfarin", "Metformin"],
             ["Lisinopril", "Potassium"],
