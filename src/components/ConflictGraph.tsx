@@ -112,7 +112,7 @@ const ConflictGraph: React.FC<ConflictGraphProps> = ({ patient, onInteractionCli
         nodeLabel={() => ""} // Custom drawing used instead
         nodeCanvasObject={drawNode}
         linkColor={getLinkColor}
-        linkWidth={(link: any) => (link.severity === 'high' ? 5 : link.severity === 'moderate' ? 3 : 1.5)}
+        linkWidth={(link: any) => (link.severity === 'high' ? 5 : link.severity === 'moderate' ? 4 : 1.5)}
         onLinkClick={(link) => onInteractionClick(link)}
         onNodeClick={() => {}}
         backgroundColor="rgba(0,0,0,0)"
