@@ -90,40 +90,6 @@ function App() {
         />
       )}
 
-      {/* Main Content Area */}
-      <div className="main-content" style={{ zIndex: 10 }}>
-        
-        {/* Top: The Network Graph & Interaction Viewer */}
-        <div style={{ display: 'flex', gap: '1rem', flex: 2, minHeight: 0 }}>
-          
-          <div className="glass-panel" style={{ flex: 2, display: 'flex', flexDirection: 'column', background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
-            <div className="widget-header">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                Medication Conflict Graph
-              </h3>
-              {selectedPatient && <span className="pill safe">{selectedPatient.name} (Age {selectedPatient.age})</span>}
-            </div>
-            <div className="widget-body" style={{ padding: 0 }}>
-              <ConflictGraph 
-                patient={selectedPatient} 
-                onInteractionClick={(interaction) => setSelectedInteraction(interaction)} 
-              />
-            </div>
-          </div>
-
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <InteractionViewer interaction={selectedInteraction} patient={selectedPatient} />
-          </div>
-
-        </div>
-
-        {/* Bottom: Validation Panel */}
-        <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
-          <ValidationPanel patient={selectedPatient} />
-        </div>
-
-      </div>
-
       {/* Sidebar: Patients & Wearables */}
       <div className="sidebar" style={{ zIndex: 10 }}>
         <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -206,6 +172,40 @@ function App() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Main Content Area */}
+      <div className="main-content" style={{ zIndex: 10 }}>
+        
+        {/* Top: The Network Graph & Interaction Viewer */}
+        <div style={{ display: 'flex', gap: '1rem', flex: 2, minHeight: 0 }}>
+          
+          <div className="glass-panel" style={{ flex: 2, display: 'flex', flexDirection: 'column', background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
+            <div className="widget-header">
+              <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                Medication Conflict Graph
+              </h3>
+              {selectedPatient && <span className="pill safe">{selectedPatient.name} (Age {selectedPatient.age})</span>}
+            </div>
+            <div className="widget-body" style={{ padding: 0 }}>
+              <ConflictGraph 
+                patient={selectedPatient} 
+                onInteractionClick={(interaction) => setSelectedInteraction(interaction)} 
+              />
+            </div>
+          </div>
+
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <InteractionViewer interaction={selectedInteraction} patient={selectedPatient} />
+          </div>
+
+        </div>
+
+        {/* Bottom: Validation Panel */}
+        <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
+          <ValidationPanel patient={selectedPatient} />
+        </div>
+
       </div>
 
       {/* Social Impact Mission Modal */}
