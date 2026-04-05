@@ -153,8 +153,8 @@ function App() {
         )}
       </div>
 
-      {/* CENTER: Wide Patient List - most visible */}
-      <div style={{ width: '360px', minWidth: '320px', display: 'flex', flexDirection: 'column', zIndex: 10 }}>
+      {/* CENTER: Wide Patient List - sticky, always visible */}
+      <div style={{ width: '360px', minWidth: '320px', position: 'sticky', top: '1rem', alignSelf: 'flex-start', zIndex: 10, maxHeight: 'calc(100vh - 2rem)', overflowY: 'auto' }}>
         <PatientList 
           selectedPatientId={selectedPatientId} 
           onSelectPatient={handlePatientSelect} 
@@ -164,8 +164,8 @@ function App() {
       {/* RIGHT: Main Analytics Area */}
       <div className="main-content" style={{ zIndex: 10 }}>
         
-        {/* Row 1: Conflict Graph (tall) */}
-        <div className="glass-panel" style={{ flex: 2, display: 'flex', flexDirection: 'column', minHeight: 0, background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
+        {/* Row 1: Conflict Graph — fixed height */}
+        <div className="glass-panel" style={{ height: '420px', display: 'flex', flexDirection: 'column', background: arMode ? 'rgba(255,255,255,0.6)' : 'var(--white-panel)' }}>
           <div className="widget-header">
             <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem' }}>
               Medication Conflict Graph
@@ -180,12 +180,12 @@ function App() {
           </div>
         </div>
 
-        {/* Row 2: AI Risk Analysis + Validation side by side */}
-        <div style={{ flex: 1, display: 'flex', gap: '1rem', minHeight: 0 }}>
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+        {/* Row 2: AI Risk Analysis + Validation side by side — auto height, scrollable */}
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <InteractionViewer interaction={selectedInteraction} patient={selectedPatient} />
           </div>
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <ValidationPanel patient={selectedPatient} />
           </div>
         </div>

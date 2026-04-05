@@ -9,7 +9,7 @@ interface InteractionViewerProps {
 
 const InteractionViewer: React.FC<InteractionViewerProps> = ({ interaction, patient }) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       
       {/* Dynamic Interaction Panel */}
       <div className={`glass-panel ${interaction?.severity === 'high' ? 'danger-glow' : ''}`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
