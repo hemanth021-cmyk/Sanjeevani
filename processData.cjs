@@ -31,6 +31,19 @@ prescriptions.forEach(p => {
 
 const KNOWN_DRUG_NAMES = ['Aspirin','Warfarin','Ibuprofen','Lisinopril','Potassium','Simvastatin','Amiodarone','Metformin','Amoxicillin','Cephalexin','Insulin'];
 
+const encryptPrescription = (name, age) => {
+  const shift = age % 26;
+  return name.split('').map(char => {
+    if (char.match(/[a-z]/i)) {
+      const code = char.charCodeAt(0);
+      const isUpperCase = code >= 65 && code <= 90;
+      const base = isUpperCase ? 65 : 97;
+      return String.fromCharCode(((code - base + shift) % 26) + base);
+    }
+    return char;
+  }).join('');
+};
+
 const generatedData = demographics.map(d => {
     const ghost = d.ghost_id;
     let wearables = { heartRate: 75, bpSystolic: 120, bpDiastolic: 80, status: 'Normal' };
@@ -75,19 +88,6 @@ const generatedData = demographics.map(d => {
         wearables
     };
 });
-
-const encryptPrescription = (name, age) => {
-  const shift = age % 26;
-  return name.split('').map(char => {
-    if (char.match(/[a-z]/i)) {
-      const code = char.charCodeAt(0);
-      const isUpperCase = code >= 65 && code <= 90;
-      const base = isUpperCase ? 65 : 97;
-      return String.fromCharCode(((code - base + shift) % 26) + base);
-    }
-    return char;
-  }).join('');
-};
 
 // Distribute strictly 50 high-risk conflicts and fix missing ghost records
 let riskCap = 0;
